@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Lab — Stealth Talent Solutions</title>
+<meta name="description" content="The agents behind the Stealth recruiting team." />
+<meta property="og:title" content="The Lab — Stealth Talent Solutions" />
+<meta property="og:description" content="Fourteen agents. Each one handles something specific." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F4F2EC;
+  --bg-warm:#ECE8DD;
+  --bg-deep:#1A1916;
+  --ink:#15140F;
+  --text:#2A2925;
+  --text-soft:#4A4844;
+  --text-muted:#7A7770;
+  --rule:#DDD9CF;
+  --rule-strong:#C7C2B5;
+  --teal:#0B7A62;
+  --teal-deep:#055843;
+  --teal-bright:#1AAA89;
+  --teal-soft:rgba(11,122,98,0.10);
+  --teal-wash:rgba(11,122,98,0.05);
+  --rust:#B05A2A;
+  --paper:#FBFAF6;
+
+  --sans:'Inter','SF Pro Text',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+
+  --gutter:clamp(20px,4vw,56px);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+::selection{background:var(--teal-soft);color:var(--ink)}
+
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ── nav ── */
+.nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px var(--gutter);
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid var(--rule);
+}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
+}
+.brand .mark{
+  width:22px;height:22px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--teal-bright) 0%,var(--teal) 35%,var(--teal-deep) 100%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),0 1px 0 rgba(255,255,255,.4);
+  position:relative;
+}
+.brand .mark::after{
+  content:"";position:absolute;inset:6px;border-radius:50%;background:rgba(255,255,255,.55);filter:blur(2px);
+}
+.brand .sep{opacity:.4;margin:0 2px}
+.nav-cta{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  padding:9px 14px 9px 16px;border:1px solid var(--ink);border-radius:999px;
+  display:inline-flex;align-items:center;gap:8px;color:var(--ink);
+  transition:background .25s var(--ease-out),color .25s var(--ease-out);
+}
+.nav-cta:hover{background:var(--ink);color:var(--bg)}
+.nav-cta .arr{transition:transform .25s var(--ease-out)}
+.nav-cta:hover .arr{transform:translateX(3px)}
+
+/* ── hero ── */
+.hero{
+  position:relative;z-index:2;
+  padding:clamp(80px,12vw,160px) var(--gutter) clamp(64px,8vw,100px);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);
+}
+.hero-tag .pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 0 rgba(11,122,98,.55);animation:pulse 2.4s var(--ease-out) infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(11,122,98,.45)}
+  70%{box-shadow:0 0 0 10px rgba(11,122,98,0)}
+  100%{box-shadow:0 0 0 0 rgba(11,122,98,0)}
+}
+.hero h1{
+  font-weight:300;font-size:clamp(36px,5.5vw,72px);
+  line-height:1.08;letter-spacing:-0.03em;color:var(--ink);
+  margin-top:20px;max-width:18ch;
+}
+.hero-deck{
+  margin-top:20px;font-size:clamp(16px,1.3vw,19px);
+  line-height:1.55;color:var(--text-soft);max-width:44ch;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:36px;padding:14px 22px;border-radius:999px;
+  background:var(--ink);color:var(--bg);
+  font-size:14px;font-weight:500;
+  box-shadow:0 1px 0 rgba(255,255,255,.12) inset,0 6px 24px -8px rgba(0,0,0,.35);
+  transition:transform .25s var(--ease-out),box-shadow .3s var(--ease-out);
+}
+.hero-cta:hover{
+  transform:translateY(-1px);
+  box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 12px 30px -10px rgba(0,0,0,.4);
+}
+
+/* ── twin (dark) ── */
+.section{position:relative;z-index:2;padding:clamp(72px,10vw,140px) var(--gutter)}
+/* ── fleet ── */
+.fleet-head{margin-bottom:36px}
+.fleet-head .label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);
+}
+.fleet-head h2{
+  font-weight:300;font-size:clamp(28px,3.5vw,42px);
+  line-height:1.1;letter-spacing:-0.025em;color:var(--ink);margin-top:12px;
+}
+.fleet{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));
+  gap:16px;
+}
+.agent{
+  background:var(--paper);border:1px solid var(--rule);border-radius:14px;
+  padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;
+  transition:transform .3s var(--ease-out),border-color .3s var(--ease-out),box-shadow .3s var(--ease-out);
+}
+.agent:hover{
+  transform:translateY(-2px);border-color:var(--rule-strong);
+  box-shadow:0 12px 32px -20px rgba(20,20,15,.25);
+}
+.agent-status{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);
+}
+.agent-status .dot{width:6px;height:6px;border-radius:50%}
+.dot--live{background:var(--teal);box-shadow:0 0 0 3px var(--teal-soft)}
+.dot--building{background:var(--rust)}
+.dot--next{background:var(--text-muted)}
+.dot--idea{background:var(--rule-strong)}
+.agent-name{font-weight:500;font-size:17px;color:var(--ink);letter-spacing:-0.01em}
+.agent-desc{font-size:14px;line-height:1.5;color:var(--text-soft)}
+
+.fleet .agent.reveal:nth-child(3n+2){transition-delay:.06s}
+.fleet .agent.reveal:nth-child(3n){transition-delay:.12s}
+
+/* ── footer ── */
+.foot{
+  position:relative;z-index:2;
+  padding:36px var(--gutter) 48px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);
+}
+
+/* ── reveal ── */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.06s}
+.d2{transition-delay:.12s}
+.d3{transition-delay:.18s}
+
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-tag .pulse{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" role="banner">
+  <a href="#top" class="brand" aria-label="Stealth Lab home">
+    <span class="mark" aria-hidden="true"></span>
+    <span>Stealth</span>
+    <span class="sep" aria-hidden="true">&times;</span>
+    <span>The Lab</span>
+  </a>
+  <a class="nav-cta" href="twin.html">Talk to the Twin <span class="arr" aria-hidden="true">&rarr;</span></a>
+</header>
+
+<main id="top">
+
+  <!-- ── hero ── -->
+  <section class="hero" aria-labelledby="hero-h">
+    <p class="hero-tag reveal"><span class="pulse" aria-hidden="true"></span> One live &middot; two building &middot; eleven next</p>
+    <h1 id="hero-h" class="reveal d1">The agents behind the team.</h1>
+    <p class="hero-deck reveal d2">Each one handles something specific so recruiters can focus on the conversations that actually close deals.</p>
+    <a class="hero-cta reveal d3" href="twin.html">Talk to the Twin <span aria-hidden="true">&rarr;</span></a>
+  </section>
+
+  <!-- ── fleet ── -->
+  <section class="section" aria-labelledby="fleet-h">
+    <div class="fleet-head reveal">
+      <p class="label">The lineup</p>
+      <h2 id="fleet-h">What else we're working on.</h2>
+    </div>
+
+    <div class="fleet">
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--building"></span> Building</div>
+        <h3 class="agent-name">Outreach Cadence</h3>
+        <p class="agent-desc">Runs follow-up sequences across every channel. One click.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--building"></span> Building</div>
+        <h3 class="agent-name">CQ Auto-Logger</h3>
+        <p class="agent-desc">Reads call transcripts and fills the CQ sheet automatically.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--next"></span> Next</div>
+        <h3 class="agent-name">Candidate Submittal</h3>
+        <p class="agent-desc">Packages and sends the full candidate profile to clients.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--next"></span> Next</div>
+        <h3 class="agent-name">Interview Confirmation</h3>
+        <p class="agent-desc">Sends prep to candidates and briefs to hiring managers.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--next"></span> Next</div>
+        <h3 class="agent-name">Interview Prep</h3>
+        <p class="agent-desc">Preps candidates 24 hours before their interview.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--next"></span> Next</div>
+        <h3 class="agent-name">Interview Feedback</h3>
+        <p class="agent-desc">Debriefs candidates right after the interview.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--next"></span> Next</div>
+        <h3 class="agent-name">Timesheet & Payroll</h3>
+        <p class="agent-desc">Handles reminders, approvals, and hour logging.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--idea"></span> Potential</div>
+        <h3 class="agent-name">Email Inbox</h3>
+        <p class="agent-desc">Monitors and responds to email in Justin's voice.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--idea"></span> Potential</div>
+        <h3 class="agent-name">LinkedIn Inbox</h3>
+        <p class="agent-desc">Same for LinkedIn DMs.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--idea"></span> Potential</div>
+        <h3 class="agent-name">Co-Manager</h3>
+        <p class="agent-desc">Each team member gets an AI co-manager that follows up and tracks work.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--idea"></span> Potential</div>
+        <h3 class="agent-name">Alliance Club</h3>
+        <p class="agent-desc">Tracks referrals and fires thank-yous automatically.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--idea"></span> Potential</div>
+        <h3 class="agent-name">Sourcing & Ranking</h3>
+        <p class="agent-desc">Finds and ranks candidates against the role spec.</p>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-status"><span class="dot dot--idea"></span> Potential</div>
+        <h3 class="agent-name">Consultant Care</h3>
+        <p class="agent-desc">Maintains consultant relationships at scale.</p>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" role="contentinfo">
+  <span>Stealth Talent Solutions</span>
+  <span>The Lab &middot; Spring 2026</span>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) }
+  });
+}, { rootMargin: '-6% 0px -4% 0px', threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

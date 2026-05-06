@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Lab — Stealth Talent Solutions</title>
+<meta name="description" content="The Lab is where Stealth ships AI recruiters. Fourteen agents, fifty hours back per recruiter per week, one operating model." />
+<meta property="og:title" content="The Lab — Stealth Talent Solutions" />
+<meta property="og:description" content="Fourteen agents. Fifty hours back. One operating model." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F4F2EC;
+  --bg-warm:#ECE8DD;
+  --bg-deep:#1A1916;
+  --bg-deep-2:#23211C;
+  --ink:#15140F;
+  --text:#2A2925;
+  --text-soft:#4A4844;
+  --text-muted:#7A7770;
+  --rule:#DDD9CF;
+  --rule-strong:#C7C2B5;
+  --teal:#0B7A62;
+  --teal-deep:#055843;
+  --teal-bright:#1AAA89;
+  --teal-soft:rgba(11,122,98,0.10);
+  --teal-wash:rgba(11,122,98,0.05);
+  --rust:#B05A2A;
+  --paper:#FBFAF6;
+
+  --serif:'Fraunces','Times New Roman',serif;
+  --sans:'Inter','SF Pro Text',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+
+  --measure:64rem;
+  --gutter:clamp(20px, 4vw, 56px);
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"ss01","ss02","cv11";
+  text-rendering:optimizeLegibility;
+}
+
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+::selection{background:var(--teal-soft);color:var(--ink)}
+
+/* ───── grain ───── */
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ───── nav ───── */
+.nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px var(--gutter);
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid var(--rule);
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.brand .mark{
+  width:22px;height:22px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--teal-bright) 0%, var(--teal) 35%, var(--teal-deep) 100%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.08), 0 1px 0 rgba(255,255,255,.4);
+  position:relative;
+}
+.brand .mark::after{
+  content:"";position:absolute;inset:6px;border-radius:50%;background:rgba(255,255,255,.55);
+  filter:blur(2px);
+}
+.brand .sep{opacity:.4;margin:0 2px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-muted);transition:color .25s var(--ease);
+  position:relative;padding-bottom:2px;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  padding:9px 14px 9px 16px;border:1px solid var(--ink);border-radius:999px;
+  display:inline-flex;align-items:center;gap:8px;color:var(--ink);
+  transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
+}
+.nav-cta:hover{background:var(--ink);color:var(--bg)}
+.nav-cta .arr{transition:transform .25s var(--ease)}
+.nav-cta:hover .arr{transform:translateX(3px)}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .nav{padding:14px 20px}
+}
+
+/* ───── shared ───── */
+.section{position:relative;z-index:2;padding:clamp(72px,10vw,140px) var(--gutter)}
+.section--tight{padding-top:clamp(56px,7vw,96px);padding-bottom:clamp(56px,7vw,96px)}
+.section--dark{background:var(--bg-deep);color:#E9E6DD}
+.section--dark .text-muted{color:#9E9A8E}
+.section--dark .rule{background:rgba(255,255,255,.10)}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);
+  display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow .num{color:var(--teal-deep);font-weight:500}
+.section--dark .eyebrow .num{color:var(--teal-bright)}
+.eyebrow::before{content:"";display:inline-block;width:18px;height:1px;background:currentColor;opacity:.5}
+
+.rule{height:1px;background:var(--rule);width:100%}
+
+/* ───── hero ───── */
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  gap:clamp(36px,6vw,96px);
+  padding:clamp(64px,9vw,120px) var(--gutter) clamp(80px,10vw,140px);
+  position:relative;z-index:2;
+}
+.hero-meta{display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding-bottom:8px}
+.hero-meta .vol{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted)}
+.hero-meta .vol b{color:var(--ink);font-weight:500}
+.hero-meta .live{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-deep);
+}
+.hero-meta .live::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 0 rgba(11,122,98,.55);animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(11,122,98,.45)}
+  70%{box-shadow:0 0 0 10px rgba(11,122,98,0)}
+  100%{box-shadow:0 0 0 0 rgba(11,122,98,0)}
+}
+
+.hero-headline{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(44px,7vw,108px);
+  line-height:1.02;
+  letter-spacing:-0.025em;
+  color:var(--ink);
+  font-feature-settings:"ss01","ss02","liga","dlig";
+}
+.hero-headline em{
+  font-style:italic;font-weight:300;
+  color:var(--teal-deep);
+}
+.hero-headline .small{
+  display:block;
+  font-size:clamp(36px,5.4vw,84px);
+  letter-spacing:-0.02em;
+  font-weight:300;
+}
+
+.hero-dek{
+  margin-top:32px;max-width:34rem;
+  font-family:var(--sans);font-size:clamp(16px,1.3vw,19px);
+  line-height:1.55;color:var(--text-soft);
+}
+.hero-dek b{color:var(--ink);font-weight:500}
+
+.hero-actions{
+  margin-top:38px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;border-radius:999px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:.01em;
+  transition:transform .25s var(--ease),background .25s var(--ease),color .25s var(--ease),box-shadow .3s var(--ease);
+}
+.btn-primary{
+  background:var(--ink);color:var(--bg);
+  box-shadow:0 1px 0 rgba(255,255,255,.12) inset, 0 6px 24px -8px rgba(0,0,0,.35);
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 12px 30px -10px rgba(0,0,0,.4)}
+.btn-primary .arr{transition:transform .25s var(--ease)}
+.btn-primary:hover .arr{transform:translate(3px,-3px)}
+.btn-ghost{
+  color:var(--ink);border:1px solid var(--rule-strong);
+  background:transparent;
+}
+.btn-ghost:hover{background:var(--bg-warm);border-color:var(--ink)}
+
+.meta-card{
+  border:1px solid var(--rule);background:var(--paper);border-radius:14px;padding:20px 22px 22px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.meta-card h4{
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text-muted);font-weight:500;
+}
+.meta-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;font-size:13px;color:var(--text-soft)}
+.meta-row + .meta-row{border-top:1px dashed var(--rule);padding-top:10px}
+.meta-row .label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--text-muted)}
+.meta-row .val{font-family:var(--serif);font-size:18px;color:var(--ink);font-weight:500;letter-spacing:-.01em}
+
+.hero-marquee{
+  margin-top:8px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);
+}
+.hero-marquee span:not(:last-child)::after{content:"·";margin-left:18px;color:var(--rule-strong)}
+
+@media (max-width:920px){
+  .hero{grid-template-columns:1fr}
+  .hero-meta{order:2}
+}
+
+/* ───── fleet ───── */
+.fleet-head{
+  display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:44px;
+}
+.fleet-head h2{
+  font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,56px);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);
+  max-width:18ch;
+}
+.fleet-head h2 em{font-style:italic;color:var(--teal-deep);font-weight:400}
+.fleet-head p{color:var(--text-soft);max-width:38ch;font-size:15px;line-height:1.6}
+
+.filters{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin:8px 0 36px;
+}
+.filter{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);
+  padding:8px 14px;border:1px solid var(--rule);border-radius:999px;background:transparent;
+  transition:all .2s var(--ease);
+}
+.filter:hover{color:var(--ink);border-color:var(--rule-strong)}
+.filter.is-active{
+  background:var(--ink);color:var(--bg);border-color:var(--ink);
+}
+
+.fleet{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+}
+.agent{
+  grid-column:span 4;
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-radius:18px;
+  padding:22px 22px 24px;
+  display:flex;flex-direction:column;gap:14px;
+  position:relative;overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.agent::before{
+  content:"";position:absolute;inset:0;border-radius:18px;pointer-events:none;
+  background:radial-gradient(140% 60% at 0% 0%, var(--teal-wash), transparent 50%);
+  opacity:0;transition:opacity .35s var(--ease);
+}
+.agent:hover{transform:translateY(-2px);border-color:var(--rule-strong);box-shadow:0 18px 40px -28px rgba(20,20,15,.35)}
+.agent:hover::before{opacity:1}
+.agent.is-feature{
+  grid-column:span 8;
+  background:linear-gradient(180deg, var(--paper), color-mix(in srgb, var(--paper) 85%, var(--teal-wash)));
+}
+.agent.is-wide{grid-column:span 6}
+
+.agent-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.agent-name{
+  font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.15;letter-spacing:-.01em;color:var(--ink);
+}
+.agent.is-feature .agent-name{font-size:30px;font-weight:400}
+.agent-id{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--text-muted);text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 8px;border-radius:999px;border:1px solid var(--rule);color:var(--text-muted);
+  background:transparent;line-height:1.4;
+}
+.tag.tag-p0{color:var(--teal-deep);border-color:color-mix(in srgb, var(--teal-deep) 35%, var(--rule))}
+.tag.tag-p1{color:var(--rust);border-color:color-mix(in srgb, var(--rust) 30%, var(--rule))}
+.tag.tag-p2{color:var(--text-muted)}
+.tag.tag-status{
+  display:inline-flex;align-items:center;gap:6px;
+}
+.tag.tag-status::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--text-muted);
+}
+.tag.tag-shipped{color:var(--teal-deep);border-color:color-mix(in srgb, var(--teal) 40%, var(--rule));background:var(--teal-wash)}
+.tag.tag-shipped::before{background:var(--teal);box-shadow:0 0 0 3px var(--teal-soft)}
+.tag.tag-build::before{background:var(--rust)}
+.tag.tag-queued::before{background:var(--text-muted)}
+
+.agent-body{font-size:14.5px;line-height:1.55;color:var(--text-soft)}
+.agent.is-feature .agent-body{font-size:16px}
+.agent-body b{color:var(--ink);font-weight:500}
+
+.agent-foot{
+  margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;
+  padding-top:14px;border-top:1px dashed var(--rule);
+}
+.agent-metric{display:flex;flex-direction:column;gap:2px}
+.agent-metric .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+.agent-metric .v{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--ink);line-height:1;letter-spacing:-.01em}
+.agent.is-feature .agent-metric .v{font-size:26px}
+.agent-link{
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid var(--ink);padding-bottom:2px;
+  transition:gap .25s var(--ease);
+}
+.agent-link:hover{gap:10px}
+
+@media (max-width:1080px){
+  .agent{grid-column:span 6}
+  .agent.is-feature,.agent.is-wide{grid-column:span 12}
+  .fleet-head{grid-template-columns:1fr;gap:18px}
+}
+@media (max-width:620px){
+  .agent{grid-column:span 12}
+}
+
+/* ───── spotlight ───── */
+.spotlight{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(36px,6vw,88px);
+  align-items:center;
+}
+.spot-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-bright);
+}
+.spot-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--teal-bright);box-shadow:0 0 12px var(--teal-bright)}
+.spot-quote{
+  font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.6vw,46px);line-height:1.18;letter-spacing:-.018em;
+  color:#F2EEE3;
+  margin-top:24px;
+}
+.spot-quote em{color:var(--teal-bright);font-style:italic;font-weight:400}
+.spot-cite{
+  margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#A6A294;
+}
+
+.spot-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:20px;padding:28px;
+  position:relative;overflow:hidden;
+}
+.spot-card::before{
+  content:"";position:absolute;inset:-1px;border-radius:20px;
+  background:radial-gradient(60% 50% at 100% 0%, rgba(26,170,137,.20), transparent 60%);
+  pointer-events:none;
+}
+.spot-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;z-index:1}
+.spot-stat .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9C988B;display:block;margin-bottom:8px}
+.spot-stat .v{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3vw,40px);color:#F4F1E7;line-height:1;letter-spacing:-.02em}
+.spot-stat .v small{font-size:.55em;color:#9C988B;font-weight:300;margin-left:2px}
+
+.spot-foot{
+  margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  position:relative;z-index:1;
+}
+.spot-foot .meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#807D72}
+.spot-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:14px;font-weight:500;
+  color:var(--teal-bright);
+  border:1px solid rgba(26,170,137,.4);
+  padding:10px 16px;border-radius:999px;background:rgba(26,170,137,.08);
+  transition:all .25s var(--ease);
+}
+.spot-link:hover{background:rgba(26,170,137,.18);border-color:rgba(26,170,137,.7)}
+.spot-link .arr{transition:transform .25s var(--ease)}
+.spot-link:hover .arr{transform:translate(3px,-3px)}
+
+@media (max-width:880px){.spotlight{grid-template-columns:1fr}}
+
+/* ───── ops model ───── */
+.ops{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  margin-top:48px;
+}
+.ops-step{
+  padding:36px 32px 40px;border-right:1px solid var(--rule);position:relative;
+  display:flex;flex-direction:column;gap:14px;
+  transition:background .3s var(--ease);
+}
+.ops-step:last-child{border-right:0}
+.ops-step:hover{background:var(--bg-warm)}
+.ops-num{
+  font-family:var(--serif);font-style:italic;font-weight:300;font-size:64px;line-height:1;color:var(--teal-deep);
+  letter-spacing:-.04em;
+}
+.ops-name{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.01em;color:var(--ink)}
+.ops-meta{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+.ops-body{font-size:14.5px;line-height:1.6;color:var(--text-soft);margin-top:6px}
+.ops-body b{color:var(--ink);font-weight:500}
+.ops-checks{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.ops-checks li{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--text-muted);
+  list-style:none;display:flex;gap:8px;align-items:flex-start;
+}
+.ops-checks li::before{
+  content:"";display:inline-block;width:10px;height:1px;background:var(--teal-deep);margin-top:7px;flex-shrink:0;
+}
+
+@media (max-width:880px){
+  .ops{grid-template-columns:1fr}
+  .ops-step{border-right:0;border-bottom:1px solid var(--rule)}
+  .ops-step:last-child{border-bottom:0}
+}
+
+/* ───── timeline ───── */
+.timeline{
+  position:relative;margin-top:48px;
+  padding:0 0 0 22px;
+  border-left:1px solid var(--rule);
+}
+.tl-row{
+  display:grid;grid-template-columns:160px 1fr;gap:32px;align-items:start;
+  padding:28px 0;
+  border-bottom:1px dashed var(--rule);position:relative;
+}
+.tl-row:last-child{border-bottom:0}
+.tl-row::before{
+  content:"";position:absolute;left:-28px;top:36px;
+  width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--rule-strong);
+}
+.tl-row.is-now::before{background:var(--teal);border-color:var(--teal-deep);box-shadow:0 0 0 4px var(--teal-soft)}
+.tl-row.is-done::before{background:var(--ink);border-color:var(--ink)}
+.tl-when{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);
+}
+.tl-when b{display:block;font-family:var(--serif);font-style:normal;font-size:22px;letter-spacing:-.01em;color:var(--ink);font-weight:500;margin-top:6px;text-transform:none}
+.tl-row.is-now .tl-when b{color:var(--teal-deep)}
+.tl-body h4{
+  font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px;
+}
+.tl-body p{color:var(--text-soft);font-size:14.5px;max-width:50ch}
+.tl-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* ───── aggregate ───── */
+.aggregate{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,80px);
+  align-items:center;
+}
+.agg-num{
+  font-family:var(--serif);font-weight:300;font-size:clamp(96px,16vw,220px);line-height:.92;letter-spacing:-.04em;color:var(--ink);
+}
+.agg-num em{color:var(--teal-deep);font-style:italic;font-weight:400}
+.agg-num .unit{
+  display:block;font-size:.18em;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);
+  font-family:var(--mono);font-style:normal;margin-top:18px;
+}
+.agg-body h3{
+  font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.25;letter-spacing:-.015em;color:var(--ink);margin-bottom:16px;
+}
+.agg-body p{color:var(--text-soft);font-size:15.5px;line-height:1.65;max-width:48ch}
+.agg-body p + p{margin-top:14px}
+.agg-row{
+  margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.agg-cell{padding:18px 0;border-top:1px solid var(--rule)}
+.agg-cell .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+.agg-cell .v{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--ink);margin-top:6px;letter-spacing:-.01em}
+
+@media (max-width:880px){.aggregate{grid-template-columns:1fr}}
+
+/* ───── footer ───── */
+.foot{
+  padding:48px var(--gutter) 64px;
+  border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start;
+}
+.foot-brand{
+  font-family:var(--serif);font-weight:400;font-style:italic;font-size:24px;color:var(--ink);letter-spacing:-.01em;
+}
+.foot-brand small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);font-style:normal;margin-top:10px}
+.foot h5{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);font-weight:500;margin-bottom:14px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--text-soft)}
+.foot ul a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.foot-bottom{
+  grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:14px;
+  margin-top:22px;padding-top:22px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);
+}
+@media (max-width:760px){
+  .foot{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* ───── reveal animation ───── */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+.reveal.delay-1{transition-delay:.06s}
+.reveal.delay-2{transition-delay:.12s}
+.reveal.delay-3{transition-delay:.18s}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .brand .mark::after,.hero-meta .live::before{animation:none !important}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" role="banner">
+  <a href="#top" class="brand" aria-label="Stealth — The Lab home">
+    <span class="mark" aria-hidden="true"></span>
+    <span>Stealth</span>
+    <span class="sep">×</span>
+    <span>The Lab</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#fleet">The Fleet</a>
+    <a href="#how">Operating Model</a>
+    <a href="#roadmap">Roadmap</a>
+  </nav>
+  <a class="nav-cta" href="../digital-twin-v6/index.html">
+    See the Twin <span class="arr" aria-hidden="true">↗</span>
+  </a>
+</header>
+
+<main id="top">
+  <!-- ───── hero ───── -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div>
+      <p class="eyebrow reveal"><span class="num">Vol. 01 / 005</span> The internal record of agents in motion</p>
+      <h1 id="hero-h" class="hero-headline reveal delay-1">
+        We are not building<br>
+        <em>a tool.</em>
+        <span class="small">We are building a fleet.</span>
+      </h1>
+      <p class="hero-dek reveal delay-2">
+        The Lab is where Stealth ships AI recruiters. <b>Fourteen agents</b> across sourcing, screening, submitting, and care — one operating model, one design language, one source of truth for what's live and what's next. This is the page we send the team.
+      </p>
+      <div class="hero-actions reveal delay-3">
+        <a class="btn btn-primary" href="../digital-twin-v6/index.html">
+          Open the Digital Twin
+          <span class="arr" aria-hidden="true">↗</span>
+        </a>
+        <a class="btn btn-ghost" href="#fleet">Tour the fleet →</a>
+      </div>
+      <p class="hero-marquee reveal delay-3" aria-hidden="true">
+        <span>Built in the open</span>
+        <span>One agent shipped</span>
+        <span>Two in pilot</span>
+        <span>Eleven queued</span>
+      </p>
+    </div>
+
+    <aside class="hero-meta reveal delay-2">
+      <div class="meta-card">
+        <h4>Issue index</h4>
+        <div class="meta-row"><span class="label">Volume</span><span class="val">01 — Spring 2026</span></div>
+        <div class="meta-row"><span class="label">Editor</span><span class="val">Justin Malki</span></div>
+        <div class="meta-row"><span class="label">Status</span><span class="val">In motion</span></div>
+        <div class="meta-row"><span class="label">Updated</span><span class="val">May 5, 2026</span></div>
+      </div>
+      <p class="vol live">Live · 1 agent shipped this quarter</p>
+    </aside>
+  </section>
+
+  <!-- ───── fleet ───── -->
+  <section class="section section--tight" id="fleet" aria-labelledby="fleet-h">
+    <div class="fleet-head reveal">
+      <div>
+        <p class="eyebrow"><span class="num">01</span> The Fleet</p>
+        <h2 id="fleet-h" style="margin-top:18px">
+          Fourteen agents,<br>each with <em>a single job</em>.
+        </h2>
+      </div>
+      <p>Every agent below replaces a specific block of recruiter time we used to give back to email. Status reflects what's actually live as of this morning, not what's on the deck.</p>
+    </div>
+
+    <div class="filters" role="tablist" aria-label="Filter agents">
+      <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">All · 14</button>
+      <button class="filter" data-filter="shipped" role="tab" aria-selected="false">Shipped</button>
+      <button class="filter" data-filter="build" role="tab" aria-selected="false">In build</button>
+      <button class="filter" data-filter="queued" role="tab" aria-selected="false">Queued</button>
+      <button class="filter" data-filter="p0" role="tab" aria-selected="false">P0 · April</button>
+      <button class="filter" data-filter="p1" role="tab" aria-selected="false">P1 · May</button>
+      <button class="filter" data-filter="p2" role="tab" aria-selected="false">P2 · May–June</button>
+    </div>
+
+    <div class="fleet" id="fleet-grid">
+
+      <!-- 01 — Digital Twin (FEATURED, shipped) -->
+      <article class="agent is-feature reveal" data-status="shipped" data-priority="p0" data-fn="recruiting">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-shipped">Shipped</span>
+              <span class="tag tag-p0">P0 · April</span>
+              <span class="tag">Recruiting</span>
+            </div>
+            <h3 class="agent-name">Digital Twin Recruiter</h3>
+          </div>
+          <span class="agent-id">A‑001</span>
+        </header>
+        <p class="agent-body">
+          Conducts full pre‑screening calls in <b>Justin's cloned voice</b>, captures structured CQ data live, and writes back to the platform. The candidate sees the conversation as the artifact — recall, probes, and skills surface in the margin as they speak. <b>The first agent off the bench.</b>
+        </p>
+        <footer class="agent-foot">
+          <div class="agent-metric">
+            <span class="k">Time saved</span>
+            <span class="v">∞ <small style="font-size:.55em;color:var(--text-muted);font-family:var(--mono);letter-spacing:.1em;">— replaces hundreds of recruiter hours</small></span>
+          </div>
+          <a class="agent-link" href="../digital-twin-v6/index.html">View live demo <span aria-hidden="true">↗</span></a>
+        </footer>
+      </article>
+
+      <!-- 02 — Outreach Cadence -->
+      <article class="agent is-wide reveal delay-1" data-status="build" data-priority="p0" data-fn="recruiting">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-build">In build</span>
+              <span class="tag tag-p0">P0</span>
+              <span class="tag">Recruiting</span>
+            </div>
+            <h3 class="agent-name">Outreach Cadence</h3>
+          </div>
+          <span class="agent-id">A‑002</span>
+        </header>
+        <p class="agent-body">
+          Multi‑channel sequence — call, text, email, LinkedIn — on a daily cadence per candidate. Personalized touches, auto‑voicemail drop, stops on reply. <b>One click = 5–7 manual actions logged and done.</b>
+        </p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">~14<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> hrs/wk · per recruiter</small></span></div>
+          <span class="agent-id" style="text-align:right">Pilot starts<br>May 12</span>
+        </footer>
+      </article>
+
+      <!-- 03 — CQ Auto-Logger -->
+      <article class="agent reveal delay-2" data-status="build" data-priority="p0" data-fn="cq">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-build">In build</span>
+              <span class="tag tag-p0">P0</span>
+              <span class="tag">CQ / Match</span>
+            </div>
+            <h3 class="agent-name">CQ Auto‑Logger</h3>
+          </div>
+          <span class="agent-id">A‑003</span>
+        </header>
+        <p class="agent-body">Reads the Fireflies transcript post‑call, auto‑fills the CQ sheet, tags, and rejection emails. Recruiter reviews and approves. <b>Builds the data moat passively.</b></p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">2–3<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> hrs/wk</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 04 — Candidate Submittal -->
+      <article class="agent reveal delay-3" data-status="queued" data-priority="p0" data-fn="cq">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p0">P0</span>
+              <span class="tag">CQ / Match</span>
+            </div>
+            <h3 class="agent-name">Candidate Submittal</h3>
+          </div>
+          <span class="agent-id">A‑004</span>
+        </header>
+        <p class="agent-body">After CQ + AE approval, packages and sends the full submittal to client — resume, CQ summary, match score, cover note.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">45–60<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> min · per submittal</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 05 — Interview Confirmation -->
+      <article class="agent reveal" data-status="queued" data-priority="p0" data-fn="interview">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p0">P0</span>
+              <span class="tag">Interview</span>
+            </div>
+            <h3 class="agent-name">Interview Confirmation</h3>
+          </div>
+          <span class="agent-id">A‑005</span>
+        </header>
+        <p class="agent-body">Fires to candidate and hiring manager on schedule. Candidate gets prep, HM gets brief and suggested questions. Tracks confirmation both sides.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">2+<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> hrs/wk</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 06 — Interview Prep -->
+      <article class="agent reveal delay-1" data-status="queued" data-priority="p0" data-fn="interview">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p0">P0</span>
+              <span class="tag">Interview</span>
+            </div>
+            <h3 class="agent-name">Interview Prep</h3>
+          </div>
+          <span class="agent-id">A‑006</span>
+        </header>
+        <p class="agent-body">Reaches out 24–48 hours before interview. Runs full prep conversation. Flags concerns to recruiter before they walk into the room.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">1.5–2<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> hrs/wk</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 07 — Interview Feedback -->
+      <article class="agent reveal delay-2" data-status="queued" data-priority="p0" data-fn="interview">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p0">P0</span>
+              <span class="tag">Interview</span>
+            </div>
+            <h3 class="agent-name">Interview Feedback</h3>
+          </div>
+          <span class="agent-id">A‑007</span>
+        </header>
+        <p class="agent-body">Contacts the candidate immediately post‑interview. Captures questions asked, sentiment, continued interest. Feeds the platform — <b>compounding data</b>.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">1.5<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> hrs/wk + data</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 08 — Timesheet & Payroll -->
+      <article class="agent reveal delay-3" data-status="queued" data-priority="p0" data-fn="consultants">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p0">P0</span>
+              <span class="tag">Consultants</span>
+            </div>
+            <h3 class="agent-name">Timesheet & Payroll</h3>
+          </div>
+          <span class="agent-id">A‑008</span>
+        </header>
+        <p class="agent-body">Reminds consultants to submit, notifies managers to approve, auto‑logs hours into revenue tracking. <b>Eliminates the Excel.</b> Quietly migrates clients onto the platform.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">3–5<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> hrs/wk eliminated</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 09 — Email Inbox (P1) -->
+      <article class="agent reveal" data-status="queued" data-priority="p1" data-fn="recruiting">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p1">P1 · May</span>
+              <span class="tag">Recruiting</span>
+            </div>
+            <h3 class="agent-name">Email Inbox</h3>
+          </div>
+          <span class="agent-id">A‑009</span>
+        </header>
+        <p class="agent-body">Monitors email 24/7. Responds in Justin's voice — qualifies, books meetings, declines. Real‑time on approval.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Reclaims</span><span class="v"><span style="font-family:var(--serif);font-style:italic;font-weight:300;">unread time</span></span></div>
+        </footer>
+      </article>
+
+      <!-- 10 — LinkedIn Inbox (P1) -->
+      <article class="agent reveal delay-1" data-status="queued" data-priority="p1" data-fn="recruiting">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p1">P1 · May</span>
+              <span class="tag">Recruiting</span>
+            </div>
+            <h3 class="agent-name">LinkedIn Inbox</h3>
+          </div>
+          <span class="agent-id">A‑010</span>
+        </header>
+        <p class="agent-body">Same shape as Email Inbox — qualifies, books, declines DMs in Justin's voice.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Reclaims</span><span class="v"><span style="font-family:var(--serif);font-style:italic;font-weight:300;">unread time</span></span></div>
+        </footer>
+      </article>
+
+      <!-- 11 — Co-Manager (P1) -->
+      <article class="agent is-wide reveal delay-2" data-status="queued" data-priority="p1" data-fn="team">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p1">P1 · May</span>
+              <span class="tag">Team</span>
+            </div>
+            <h3 class="agent-name">Co‑Manager</h3>
+          </div>
+          <span class="agent-id">A‑011</span>
+        </header>
+        <p class="agent-body">
+          Every team member gets an AI co‑manager. Tracks tasks, follows up automatically, assists completion, escalates only when stuck. <b>The org chart, but quieter.</b>
+        </p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">hrs/wk<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> · across team</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 12 — Alliance Club (P1) -->
+      <article class="agent reveal delay-3" data-status="queued" data-priority="p1" data-fn="alliance">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p1">P1 · May</span>
+              <span class="tag">Alliance</span>
+            </div>
+            <h3 class="agent-name">Alliance Club Follow‑Up</h3>
+          </div>
+          <span class="agent-id">A‑012</span>
+        </header>
+        <p class="agent-body">Tracks every referral. Fires thank‑yous, status updates, bonus notifications automatically.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">30–60<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> min/wk</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 13 — Sourcing & Ranking (P2) -->
+      <article class="agent is-wide reveal" data-status="queued" data-priority="p2" data-fn="recruiting">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p2">P2 · May–Jun</span>
+              <span class="tag">Recruiting</span>
+            </div>
+            <h3 class="agent-name">Sourcing & Ranking</h3>
+          </div>
+          <span class="agent-id">A‑013</span>
+        </header>
+        <p class="agent-body">Monitors job boards, LinkedIn, ATS for open and pipeline jobs. Ranks candidates against role spec + ideal profiles. Delivers a ranked shortlist before stand‑up.</p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Time saved</span><span class="v">2–3<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> hrs/wk · per recruiter</small></span></div>
+        </footer>
+      </article>
+
+      <!-- 14 — Consultant Care (P2) -->
+      <article class="agent reveal delay-1" data-status="queued" data-priority="p2" data-fn="care">
+        <header class="agent-head">
+          <div>
+            <div class="tags" style="margin-bottom:10px">
+              <span class="tag tag-status tag-queued">Queued</span>
+              <span class="tag tag-p2">P2 · May–Jun</span>
+              <span class="tag">Dream Manager</span>
+            </div>
+            <h3 class="agent-name">Consultant Care</h3>
+          </div>
+          <span class="agent-id">A‑014</span>
+        </header>
+        <p class="agent-body">Ongoing relationship with every active billing consultant in Justin's voice. Day 1 / Week 1 / Day 30 triggers. <b>Possible at 40 consultants. Impossible at 120 without it.</b></p>
+        <footer class="agent-foot">
+          <div class="agent-metric"><span class="k">Scales to</span><span class="v">120+<small style="font-size:.45em;letter-spacing:.1em;color:var(--text-muted);font-family:var(--mono);"> consultants</small></span></div>
+        </footer>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ───── spotlight (dark) ───── -->
+  <section class="section section--dark" aria-labelledby="spot-h">
+    <div class="spotlight">
+      <div class="reveal">
+        <p class="spot-tag"><span class="dot" aria-hidden="true"></span> Spotlight · A‑001</p>
+        <h2 id="spot-h" class="spot-quote">
+          The Digital Twin is the <em>proof</em> that the rest of the fleet is buildable.
+        </h2>
+        <p class="spot-cite">— First agent shipped · April 2026</p>
+      </div>
+      <div class="spot-card reveal delay-1">
+        <div class="spot-stat-row">
+          <div class="spot-stat">
+            <span class="k">Avg call</span>
+            <span class="v">14<small>min</small></span>
+          </div>
+          <div class="spot-stat">
+            <span class="k">CQ fields captured</span>
+            <span class="v">28</span>
+          </div>
+          <div class="spot-stat">
+            <span class="k">Recruiter review</span>
+            <span class="v">~3<small>min</small></span>
+          </div>
+        </div>
+        <div class="spot-foot">
+          <span class="meta">Built on ElevenLabs ConvAI · Live</span>
+          <a class="spot-link" href="../digital-twin-v6/index.html">
+            Open the demo <span class="arr" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── operating model ───── -->
+  <section class="section" id="how" aria-labelledby="ops-h">
+    <div class="fleet-head reveal">
+      <div>
+        <p class="eyebrow"><span class="num">02</span> How The Lab Ships</p>
+        <h2 id="ops-h" style="margin-top:18px">
+          Three phases. <em>No surprises.</em>
+        </h2>
+      </div>
+      <p>Every agent moves through the same path. We don't roll anything to the fleet that hasn't been used by a real recruiter, on a real desk, for a real week.</p>
+    </div>
+
+    <div class="ops">
+      <article class="ops-step reveal">
+        <span class="ops-num">01</span>
+        <p class="ops-meta">Week 1–2 · Prototype</p>
+        <h3 class="ops-name">Prototype</h3>
+        <p class="ops-body">A working agent against real candidate data, scoped to one job. No mocks. We measure what it gets right and what it confidently gets wrong.</p>
+        <ul class="ops-checks">
+          <li>Real prompts, real data</li>
+          <li>One recruiter in the loop</li>
+          <li>Killable by Friday</li>
+        </ul>
+      </article>
+      <article class="ops-step reveal delay-1">
+        <span class="ops-num">02</span>
+        <p class="ops-meta">Week 3–4 · Pilot</p>
+        <h3 class="ops-name">Pilot</h3>
+        <p class="ops-body">One recruiter runs the agent every working day. We track time saved, error rate, and the moments they reach for the override. <b>That override log is the spec for v2.</b></p>
+        <ul class="ops-checks">
+          <li>Daily usage, not demos</li>
+          <li>Measured in hours back</li>
+          <li>Two stand‑ups per week</li>
+        </ul>
+      </article>
+      <article class="ops-step reveal delay-2">
+        <span class="ops-num">03</span>
+        <p class="ops-meta">Week 5+ · Ship</p>
+        <h3 class="ops-name">Ship</h3>
+        <p class="ops-body">Roll to the fleet behind a kill‑switch. Co‑Manager picks up monitoring. We keep the override log open for the first 30 days and treat every entry as a bug.</p>
+        <ul class="ops-checks">
+          <li>Rollouts behind a flag</li>
+          <li>Override log = backlog</li>
+          <li>30‑day post‑mortem, always</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───── roadmap ───── -->
+  <section class="section section--tight" id="roadmap" aria-labelledby="rm-h">
+    <div class="fleet-head reveal">
+      <div>
+        <p class="eyebrow"><span class="num">03</span> Roadmap</p>
+        <h2 id="rm-h" style="margin-top:18px">From <em>April</em> to <em>June</em>.</h2>
+      </div>
+      <p>P0 was about proving the loop. P1 is about giving the team their inboxes back. P2 is about scaling care past the point a human can.</p>
+    </div>
+
+    <ol class="timeline" aria-label="Agent roadmap">
+      <li class="tl-row is-done reveal">
+        <div class="tl-when">Done · April 2026<b>Priority 0 — The Core</b></div>
+        <div class="tl-body">
+          <h4>Eight agents. The recruiting loop, end to end.</h4>
+          <p>Outreach, screening, CQ, submittal, interview confirm/prep/feedback, and timesheets. The Digital Twin shipped first because it carries the rest of the brand.</p>
+          <div class="tl-pills">
+            <span class="tag tag-shipped">1 shipped</span>
+            <span class="tag" style="border-color:color-mix(in srgb, var(--rust) 30%, var(--rule));color:var(--rust)">2 in build</span>
+            <span class="tag">5 queued</span>
+          </div>
+        </div>
+      </li>
+      <li class="tl-row is-now reveal delay-1">
+        <div class="tl-when">Now · May 2026<b>Priority 1 — Reach</b></div>
+        <div class="tl-body">
+          <h4>Four agents. Inboxes, team, and referrals.</h4>
+          <p>Email + LinkedIn in Justin's voice, a Co‑Manager for every team member, and an Alliance Club follow‑up loop. This is the quarter the team stops feeling like they're behind.</p>
+          <div class="tl-pills">
+            <span class="tag" style="color:var(--teal-deep);border-color:color-mix(in srgb, var(--teal) 35%, var(--rule));background:var(--teal-wash)">In flight</span>
+            <span class="tag">4 agents</span>
+            <span class="tag">Pilot starts May 12</span>
+          </div>
+        </div>
+      </li>
+      <li class="tl-row reveal delay-2">
+        <div class="tl-when">Next · May–June 2026<b>Priority 2 — Scale</b></div>
+        <div class="tl-body">
+          <h4>Two agents. Sourcing intelligence and consultant care.</h4>
+          <p>The agents that take Stealth from a 40‑consultant operation to a 120‑consultant operation without changing the headcount of the team running it.</p>
+          <div class="tl-pills">
+            <span class="tag">Queued</span>
+            <span class="tag">2 agents</span>
+            <span class="tag">Spec review · May 20</span>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ───── aggregate ───── -->
+  <section class="section" aria-labelledby="agg-h">
+    <div class="aggregate">
+      <p class="agg-num reveal">~<em>50</em>
+        <span class="unit">Hours back · per recruiter · per week · at full fleet</span>
+      </p>
+      <div class="agg-body reveal delay-1">
+        <h3 id="agg-h">The math is the pitch.</h3>
+        <p>If P0 holds, every recruiter on the floor gets back roughly <b>a working week per month</b> — most of it from outreach, CQ logging, and interview ops. That time goes back into the conversations that actually move the deal.</p>
+        <p>If P1 holds, Justin's inbox stops being the bottleneck for the company. If P2 holds, we stop hiring against growth.</p>
+        <div class="agg-row">
+          <div class="agg-cell"><div class="k">P0 fleet</div><div class="v">~28 hrs/wk</div></div>
+          <div class="agg-cell"><div class="k">P1 fleet</div><div class="v">~14 hrs/wk</div></div>
+          <div class="agg-cell"><div class="k">P2 fleet</div><div class="v">~8 hrs/wk</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── footer ───── -->
+  <footer class="foot" role="contentinfo">
+    <div>
+      <div class="foot-brand">
+        The Lab is how we ship.
+        <small>Stealth Talent Solutions · Internal record</small>
+      </div>
+    </div>
+    <div>
+      <h5>Live work</h5>
+      <ul>
+        <li><a href="../digital-twin-v6/index.html">Digital Twin · v6 ↗</a></li>
+        <li><a href="#fleet">The Fleet (14)</a></li>
+        <li><a href="#how">Operating Model</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Source</h5>
+      <ul>
+        <li><a href="../agent-roadmap.md">Agent roadmap (Malki)</a></li>
+        <li><a href="#roadmap">P0 / P1 / P2 timeline</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>Vol. 01 · Spring 2026</span>
+      <span>Updated May 5, 2026 · Lupo</span>
+    </div>
+  </footer>
+</main>
+
+<script>
+// ── reveal on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) }
+  })
+},{rootMargin:'-8% 0px -4% 0px', threshold:0.05});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── fleet filter
+const filters = document.querySelectorAll('.filter');
+const cards = document.querySelectorAll('#fleet-grid .agent');
+filters.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filters.forEach(b=>{ b.classList.remove('is-active'); b.setAttribute('aria-selected','false') });
+    btn.classList.add('is-active'); btn.setAttribute('aria-selected','true');
+    const f = btn.dataset.filter;
+    cards.forEach(c=>{
+      const status = c.dataset.status, prio = c.dataset.priority;
+      let show = false;
+      if (f === 'all') show = true;
+      else if (f === 'shipped') show = status === 'shipped';
+      else if (f === 'build')   show = status === 'build';
+      else if (f === 'queued')  show = status === 'queued';
+      else if (f === 'p0')      show = prio === 'p0';
+      else if (f === 'p1')      show = prio === 'p1';
+      else if (f === 'p2')      show = prio === 'p2';
+      c.style.display = show ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
