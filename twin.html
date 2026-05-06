@@ -3,21 +3,18 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Digital Twin — Stealth Talent Solutions</title>
-<meta name="description" content="Talk to Justin's Digital Twin. Pre-screening powered by Stealth Talent Solutions." />
-<meta property="og:title" content="Digital Twin — Stealth Talent Solutions" />
-<meta property="og:description" content="Talk to Justin's Digital Twin." />
+<title>Talk to Justin — Stealth Talent Solutions</title>
+<meta name="description" content="Quick intro call with Justin's AI at Stealth Talent Solutions." />
+<meta property="og:title" content="Talk to Justin — Stealth Talent Solutions" />
+<meta property="og:description" content="Quick intro call with Justin's AI. On your time." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 :root{
   --bg-deep:#1A1916;
-  --bg-deep-2:#23211C;
   --teal:#0B7A62;
-  --teal-deep:#055843;
   --teal-bright:#1AAA89;
-  --teal-soft:rgba(11,122,98,0.10);
   --sans:'Inter','SF Pro Text',system-ui,-apple-system,sans-serif;
   --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
   --ease-out:cubic-bezier(.16,1,.3,1);
@@ -31,13 +28,13 @@ body{
   color:#E9E6DD;
   font-family:var(--sans);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
   position:relative;overflow-x:hidden;
 }
 
-/* ambient glow */
 body::before{
   content:"";position:fixed;top:-30%;left:50%;transform:translateX(-50%);
   width:140vw;height:80vh;
@@ -45,32 +42,18 @@ body::before{
   pointer-events:none;z-index:0;
 }
 
-/* grain */
 .grain{
   position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.18;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-/* back link */
-.back{
-  position:fixed;top:20px;left:clamp(16px,3vw,32px);z-index:10;
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:#807D72;text-decoration:none;
-  display:inline-flex;align-items:center;gap:8px;
-  transition:color .25s var(--ease-out);
-}
-.back:hover{color:#E9E6DD}
-.back .arr{transition:transform .25s var(--ease-out)}
-.back:hover .arr{transform:translateX(-3px)}
-
-/* card */
 .card{
   position:relative;z-index:2;
-  width:min(90vw,520px);
+  width:min(90vw,480px);
   background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018));
   border:1px solid rgba(255,255,255,.10);
   border-radius:24px;
-  padding:clamp(28px,5vw,44px);
+  padding:clamp(32px,5vw,48px);
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
 }
@@ -80,71 +63,49 @@ body::before{
   pointer-events:none;
 }
 
-.card-status{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--teal-bright);
-}
-.card-status .dot{
-  width:7px;height:7px;border-radius:50%;background:var(--teal-bright);
-  box-shadow:0 0 12px var(--teal-bright);
-  animation:pulse 2.4s var(--ease-out) infinite;
-}
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(26,170,137,.45)}
-  70%{box-shadow:0 0 0 10px rgba(26,170,137,0)}
-  100%{box-shadow:0 0 0 0 rgba(26,170,137,0)}
+.brand{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#807D72;
 }
 
 .card h1{
-  font-weight:300;font-size:clamp(24px,4vw,36px);
-  line-height:1.15;letter-spacing:-0.025em;color:#F2EEE3;
-  margin-top:16px;
+  font-weight:300;font-size:clamp(26px,4.5vw,38px);
+  line-height:1.12;letter-spacing:-0.025em;color:#F2EEE3;
+  margin-top:20px;
 }
 
-.card > p{
-  margin-top:12px;font-size:15px;line-height:1.6;color:#A6A294;
-  max-width:38ch;
+.card .intro{
+  margin-top:14px;font-size:15px;line-height:1.65;color:#A6A294;
+  max-width:36ch;
 }
 
-/* stats row */
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-  margin-top:28px;padding-top:22px;
+.cta{
+  margin-top:28px;padding-top:24px;
   border-top:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;gap:14px;
+  color:#C8C4B8;font-size:14px;font-weight:400;
 }
-.stat .k{
-  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-  color:#9C988B;display:block;margin-bottom:6px;
-}
-.stat .v{
-  font-weight:400;font-size:clamp(22px,3vw,32px);color:#F4F1E7;
-  line-height:1;letter-spacing:-0.02em;
-}
-.stat .v small{font-size:.5em;color:#9C988B;font-weight:300;margin-left:2px}
-
-/* nudge */
-.nudge{
-  margin-top:28px;padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;gap:12px;
-  color:#807D72;font-size:13px;
-}
-.nudge-icon{
-  width:36px;height:36px;border-radius:50%;flex-shrink:0;
-  border:1px solid rgba(255,255,255,.12);
+.cta-icon{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  border:1px solid rgba(26,170,137,.3);
+  background:rgba(26,170,137,.08);
   display:flex;align-items:center;justify-content:center;
+  animation:pulse 2.4s var(--ease-out) infinite;
 }
-.nudge-icon svg{width:16px;height:16px;stroke:var(--teal-bright);opacity:.7}
+.cta-icon svg{width:18px;height:18px;stroke:var(--teal-bright)}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(26,170,137,.35)}
+  70%{box-shadow:0 0 0 12px rgba(26,170,137,0)}
+  100%{box-shadow:0 0 0 0 rgba(26,170,137,0)}
+}
 
-/* footer */
 .foot{
   position:fixed;bottom:20px;left:0;right:0;z-index:2;
   text-align:center;
-  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5A5850;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#3E3D38;
 }
+.foot a{color:#5A5850;text-decoration:none;transition:color .2s var(--ease-out)}
+.foot a:hover{color:#807D72}
 
-/* entrance */
 .card{
   opacity:0;transform:translateY(16px);
   animation:enter .9s var(--ease-out) .15s forwards;
@@ -153,48 +114,31 @@ body::before{
 
 @media(prefers-reduced-motion:reduce){
   .card{opacity:1;transform:none;animation:none}
-  .card-status .dot{animation:none}
+  .cta-icon{animation:none}
 }
 </style>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
 
-<a class="back" href="index.html"><span class="arr" aria-hidden="true">&larr;</span> The Lab</a>
-
 <div class="card">
-  <p class="card-status"><span class="dot" aria-hidden="true"></span> Live</p>
-  <h1>Digital Twin Recruiter</h1>
-  <p>Screens candidates in Justin's voice. Captures everything. Hands it to a real recruiter.</p>
+  <p class="brand">Stealth Talent Solutions</p>
+  <h1>Talk to Justin</h1>
+  <p class="intro">Quick intro call with Justin's AI. Takes about 10 minutes, and you can do it on your own time. Just click the button in the corner to get started.</p>
 
-  <div class="stats">
-    <div class="stat">
-      <span class="k">Avg call</span>
-      <span class="v">14<small>min</small></span>
-    </div>
-    <div class="stat">
-      <span class="k">CQ fields</span>
-      <span class="v">28</span>
-    </div>
-    <div class="stat">
-      <span class="k">Review time</span>
-      <span class="v">~3<small>min</small></span>
-    </div>
-  </div>
-
-  <div class="nudge">
-    <div class="nudge-icon" aria-hidden="true">
+  <div class="cta">
+    <div class="cta-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
         <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
         <line x1="12" y1="19" x2="12" y2="22"/>
       </svg>
     </div>
-    <p>Use the widget in the corner to start a conversation.</p>
+    <p>You can speak or type — whatever's easier.</p>
   </div>
 </div>
 
-<div class="foot">Stealth Talent Solutions</div>
+<div class="foot"><a href="https://hirewithstealth.com">hirewithstealth.com</a></div>
 
 <elevenlabs-convai agent-id="agent_1201kqjsjpzyek7twj9tbepcasta"></elevenlabs-convai>
 <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
