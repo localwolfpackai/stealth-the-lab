@@ -1,41 +1,26 @@
 # The Lab — Stealth Talent Solutions
 
-Two pages: an internal agent overview for the team, and a candidate-facing Digital Twin that runs pre-screening calls in Justin's voice.
+Internal agent overview + candidate-facing AI voice twin for pre-screening calls.
 
 ## Live
 
 | Page | URL | Audience |
 |---|---|---|
-| **Digital Twin** | [twin.html](https://localwolfpackai.github.io/stealth-the-lab/twin.html) | Candidates |
+| **AJ** | [twin.html](https://localwolfpackai.github.io/stealth-the-lab/twin.html) | Candidates |
 | **The Lab** | [index.html](https://localwolfpackai.github.io/stealth-the-lab/) | Internal team |
 
-## Digital Twin
+## AJ — Digital Twin
 
-![Digital Twin page](screenshot-twin.png)
+![AJ](screenshot-aj.png)
 
-Standalone page with an ElevenLabs ConvAI widget. Candidates click the button, talk to Justin's AI, and the conversation data flows back to the platform. No login, no install — just a link.
-
-- Voice: Justin's cloned voice via ElevenLabs
-- Widget: speaks and accepts text input
-- Agent: `agent_1201kqjsjpzyek7twj9tbepcasta` (public, no auth required)
+Candidates get a link, click the button, and talk to Justin's AI. Voice cloned via ElevenLabs. No login, no install.
 
 ## The Lab
 
-![The Lab overview](screenshot-lab.png)
+![The Lab](screenshot-lab.png)
 
-Internal overview of the 14-agent roadmap. Shows what's live, what's building, and what's next. Not for candidates.
-
-## Files
-
-```
-index.html          — The Lab (internal overview)
-twin.html           — Digital Twin (candidate-facing)
-archive/            — Earlier iterations (not deployed)
-.github/workflows/  — GitHub Pages deploy
-```
+Agent roadmap for the internal team. What's live, what's building, what's next.
 
 ## Stack
 
-Static HTML + CSS. No build step. Fonts loaded from Google Fonts. ElevenLabs widget loaded via their CDN script.
-
-Deployed automatically to GitHub Pages on push to `main`.
+Static HTML + CSS. No build step. Deployed to GitHub Pages on push to `main`.
